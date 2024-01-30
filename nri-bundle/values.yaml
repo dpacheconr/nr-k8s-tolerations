@@ -194,6 +194,7 @@ pixie-chart:
     #   cpu: 100m
     #   memory: 5Gi
     nodeSelector: {}
+    tolerations: []
     patches:
       vizier-pem: '{"spec": {"template": {"spec": { "tolerations": [{"key": "kubernetes.azure.com/scalesetpriority", "operator": "Equal", "effect": "NoSchedule" },{"key": "CriticalAddonsOnly", "operator": "Equal", "value": "true" }]}}}}'  
 
