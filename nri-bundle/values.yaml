@@ -65,13 +65,13 @@ nri-kube-events:
 newrelic-logging:
   # newrelic-logging.enabled -- Install the [`newrelic-logging` chart](https://github.com/newrelic/helm-charts/tree/master/charts/newrelic-logging)
   enabled: true
-  lowDataMode: true
+  lowDataMode: false
 
 newrelic-pixie:
   namespace: pixie
   # newrelic-pixie.enabled -- Install the [`newrelic-pixie`](https://github.com/newrelic/helm-charts/tree/master/charts/newrelic-pixie)
   apiKey: "XXX"
-  enabled: true
+  enabled: false
   tolerations:
     - key: "kubernetes.azure.com/scalesetpriority"
       operator: "Equal"
@@ -124,14 +124,14 @@ pixie-chart:
   nodeselector: {}
     # agentpool: userpool
     
-  enabled: true
+  enabled: false
   ## OLM configuration
   # OLM is used for deploying and ensuring the operator is up-to-date.
   # deployOLM indicates whether OLM should be deployed. This should only be
   # disabled if an instance of OLM is already configured on the cluster.
   # Should be string "true" if true, but "false" otherwise. If empty, defaults
   # to whether OLM is present in the cluster.
-  deployOLM: ""
+  deployOLM: "true"
   # The namespace that olm should run in. If olm has already been deployed
   # to the cluster, this should be the namespace that olm is already running in.
   olmNamespace: "olm"
