@@ -23,17 +23,11 @@ spec:
         name: delete-job
       restartPolicy: Never
       serviceAccountName: pl-deleter-service-account
+      {{- with include "custom.tolerations" . }}
       tolerations:
-      - key: "kubernetes.azure.com/scalesetpriority"
-        operator: "Equal"
-        value: "spot"
-        effect: "NoSchedule"
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: "agentpool"
-                operator: In
-                values:
-                - "userpool"
+        {{- . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.nodeselector }}
+      nodeSelector:
+        {{ .Values.nodeselector | toYaml | nindent 8 }}
+      {{- end}}
